@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Generatepassword from "../password/Generatepassword"
+import UID from "../uid/UID"
 
 const Main = () => {
     const [active, setActive] = useState("password")
@@ -29,7 +30,10 @@ const Main = () => {
                         Unique ID
                     </button>
                 </div>
-                <Generatepassword />
+                {active === "password" ?
+                    <Generatepassword />
+                    : <UID />
+                }
             </div>
         </div>
 
