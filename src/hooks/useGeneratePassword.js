@@ -26,8 +26,36 @@ function useGeneratePassword() {
         break;
     }
   };
+  const createPassword = (length) => {
+    const charset = {
+      uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      lowercase: "abcdefghijklmnopqrstuvwxyz",
+      numbers: "0123456789",
+      symbols: "!@#$%^&*()[]",
+    };
 
-  return { handleToggle, uppercase, lowercase, numbers, symbols };
+    let selectedChars = "";
+    if (uppercase) selectedChars += charset.uppercase;
+    if (lowercase) selectedChars += charset.lowercase;
+    if (numbers) selectedChars += charset.numbers;
+    if (symbols) selectedChars += charset.symbols;
+
+    let generatedPassword = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * selectedChars.length);
+      generatedPassword += selectedChars[randomIndex];
+    }
+    return generatedPassword;
+  };
+
+  return {
+    handleToggle,
+    uppercase,
+    lowercase,
+    numbers,
+    symbols,
+    createPassword,
+  };
 }
 
 export default useGeneratePassword;
